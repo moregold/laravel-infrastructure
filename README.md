@@ -17,7 +17,7 @@ $ composer require laravel-infrastructure
 ## Usage
 
 ``` php
-use Infrastructure\[class];
+use Moregold\Infrastructure\[class];
 ```
 
 ## Change log
