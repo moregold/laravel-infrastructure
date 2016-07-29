@@ -1,9 +1,9 @@
-<?php namespace Moregold\Infrastructure;
+<?php namespace Packback\Infrastructure;
 
 use Illuminate\Support\Facades\Config;
 use Stevenmaguire\Laravel\Contracts\Cacheable;
 use Stevenmaguire\Laravel\Services\EloquentCache;
-use Moregold\Infrastructure\Pagination\FiltersTrait;
+use Packback\Infrastructure\Pagination\FiltersTrait;
 
 abstract class Repository extends EloquentCache implements Cacheable
 {
@@ -21,19 +21,11 @@ abstract class Repository extends EloquentCache implements Cacheable
      * Cache (or fetch) the count of a collection
      *
      * @param $query
-     * @return \Illuminate\Support\Collection
+     * @return \Illuminate\Database\Eloquent\Collection
      */
-    protected function cacheCount($query, $key = null, $pagination_filters = [])
+    protected function cacheCount($query, $key = null)
     {
-        if (isset($pagination_filters['filter'])) {
-            $key = $key ? $key.'_' : '';
-            foreach ($pagination_filters['filter'] as $filter => $val) {
-                $key .= $filter . ':' . $val . ',';
-            }
-        }
-
         $key ? $key = 'count('.$key.')' : $key = 'count';
-
         return $this->cache($key, $query, 'count');
     }
 
@@ -53,23 +45,19 @@ abstract class Repository extends EloquentCache implements Cacheable
      *
      * @param $query
      * @param $pagination_filters
-     * @return \Illuminate\Support\Collection
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     protected function paginatedCache($query, $pagination_filters, $key = null)
     {
-        $serialized_filters = $pagination_filters['skip'].','
+        $pagination_filters = $pagination_filters['skip'].','
             .$pagination_filters['take'].','
             .$pagination_filters['order_by']['field'].','
             .$pagination_filters['order_by']['order'];
 
-        foreach ($pagination_filters['filter'] as $filter => $val) {
-            $serialized_filters .= $filter.':'.$val.',';
-        }
-
         if ($key) {
-            $key = 'paginated('.$key.$serialized_filters.')';
+            $key = 'paginated('.$key.$pagination_filters.')';
         } else {
-            $key = 'paginated('.$serialized_filters.')';
+            $key = 'paginated('.$pagination_filters.')';
         }
 
         return $this->cache($key, $query);
