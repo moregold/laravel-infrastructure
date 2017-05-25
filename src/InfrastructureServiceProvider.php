@@ -25,6 +25,11 @@ class InfrastructureServiceProvider extends ServiceProvider
 //        {
 //            return new CustomRules($translator, $data, $rules, $messages);
 //        });
+        $this->handleConfigs();
+        $this->handleMigrations();
+        // $this->handleViews();
+        // $this->handleTranslations();
+        // $this->handleRoutes();
     }
 
     private function registerEvents()
@@ -41,4 +46,36 @@ class InfrastructureServiceProvider extends ServiceProvider
             }
         });
     }
+
+    private function handleConfigs() {
+
+        $configPath = __DIR__ . '/../config/moregold-laravel-infrastructure.php';
+
+        $this->publishes([$configPath => config_path('moregold-laravel-infrastructure.php')]);
+
+        $this->mergeConfigFrom($configPath, 'moregold-laravel-infrastructure');
+    }
+
+    private function handleTranslations() {
+
+        $this->loadTranslationsFrom(__DIR__.'/../lang', 'moregold-laravel-infrastructure');
+    }
+
+    private function handleViews() {
+
+        $this->loadViewsFrom(__DIR__.'/../views', 'moregold-laravel-infrastructure');
+
+        $this->publishes([__DIR__.'/../views' => base_path('resources/views/vendor/moregold-laravel-infrastructure')]);
+    }
+
+    private function handleMigrations() {
+
+        $this->publishes([__DIR__ . '/../migrations' => base_path('database/migrations')]);
+    }
+
+    private function handleRoutes() {
+
+        include __DIR__.'/../routes.php';
+    }
+    
 }
