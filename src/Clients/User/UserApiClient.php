@@ -13,7 +13,7 @@ class UserApiClient implements UserClientInterface
     public function __construct(Client $client)
     {
         $this->client = $client;
-        $this->client->setBaseUrl(Config::get('services.users.base_url'));
+        $this->client->setBaseUrl(Config::get('services.Moregold.users.base_url'));
     }
 
     /**
@@ -86,8 +86,8 @@ class UserApiClient implements UserClientInterface
     {
         $payload = [
             'grant_type' => 'client_credentials',
-            'client_id' => Config::get('services.users.key'),
-            'client_secret' => Config::get('services.users.secret'),
+            'client_id' => Config::get('services.Moregold.users.key'),
+            'client_secret' => Config::get('services.Moregold.users.secret'),
             'scope' => 'admin'
         ];
 
@@ -103,8 +103,8 @@ class UserApiClient implements UserClientInterface
     {
         $response = $this->client->sendRequest('api/auth/request-access', [
             'grant_type' => 'client_credentials',
-            'client_id' => Config::get('services.users.key'),
-            'client_secret' => Config::get('services.users.secret'),
+            'client_id' => Config::get('services.Moregold.users.key'),
+            'client_secret' => Config::get('services.Moregold.users.secret'),
             'scope' => 'admin',
         ], 'post', 'JSON');
         if ($response->getStatus() == 200) {
