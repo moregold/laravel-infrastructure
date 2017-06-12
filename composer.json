@@ -28,7 +28,7 @@
         "codeception/mockery-module": "*",
         "codeception/codeception": "^2.2",
         "illuminate/support": "~5.1|~5.2",
-        "lucadegasperi/oauth2-server-laravel": "5.1.*",
+        "lucadegasperi/oauth2-server-laravel": "5.1.*"
     },
     "autoload": {
         "psr-4": {
