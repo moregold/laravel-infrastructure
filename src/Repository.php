@@ -1,9 +1,9 @@
-<?php namespace Packback\Infrastructure;
+<?php namespace Moregold\Infrastructure;
 
 use Illuminate\Support\Facades\Config;
 use Stevenmaguire\Laravel\Contracts\Cacheable;
 use Stevenmaguire\Laravel\Services\EloquentCache;
-use Packback\Infrastructure\Pagination\FiltersTrait;
+use Moregold\Infrastructure\Pagination\FiltersTrait;
 
 abstract class Repository extends EloquentCache implements Cacheable
 {
