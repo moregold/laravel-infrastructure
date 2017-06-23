@@ -80,9 +80,9 @@ trait ErrorMessageTrait
      */
     public function addError($message = null, $key = null, $statusCode = 500)
     {
-        if (empty($key)) {
-            $key = TypesFacade::defaultError();
-        }
+        // if (empty($key)) {
+            // $key = TypesFacade::defaultError();
+        // }
         $this->initErrorMessageAble();
         $this->errors->add($key, $message);
         $this->setStatusCode($statusCode);
