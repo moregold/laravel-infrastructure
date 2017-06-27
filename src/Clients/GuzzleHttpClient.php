@@ -100,7 +100,8 @@ class GuzzleHttpClient implements HttpClientInterface
     public function setPayload($payload = '')
     {
         try {
-            $this->payload = json_decode($payload->getBody()->getContents());
+            $_contents = $payload->getBody()->getContents();
+            $this->payload = !is_null(json_decode($_contents)) ? json_decode($_contents) : $_contents;
         } catch (Exception $e) {
             $this->setStatus($payload->getStatusCode());
             $this->setMessage($e->getMessage());
