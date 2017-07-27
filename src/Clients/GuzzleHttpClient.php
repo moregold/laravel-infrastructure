@@ -187,6 +187,7 @@ class GuzzleHttpClient implements HttpClientInterface
         }
 
         $options['headers'] = $this->headers;
+        $options['verify'] = false;
 
         try {
             $uri = Uri::resolve($this->base_uri, $resource);
