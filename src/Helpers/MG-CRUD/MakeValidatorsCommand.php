@@ -1,6 +1,6 @@
-<?php namespace Moregold\Infrastructure\Helpers\Generation;
+<?php namespace Moregold\Infrastructure\Helpers\MG-CRUD;
 
-use Moregold\Infrastructure\Helpers\Generation\GenerationRepository;
+use Moregold\Infrastructure\Helpers\MG-CRUD\GenerationRepository;
 
 class MakeValidatorsCommand extends GenerationRepository
 {
