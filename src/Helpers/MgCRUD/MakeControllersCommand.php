@@ -1,6 +1,6 @@
-<?php namespace Moregold\Infrastructure\Helpers\MG-CRUD;
+<?php namespace Moregold\Infrastructure\Helpers\MgCRUD;
 
-use Moregold\Infrastructure\Helpers\MG-CRUD\GenerationRepository;
+use Moregold\Infrastructure\Helpers\MgCRUD\GenerationRepository;
 
 class MakeControllersCommand extends GenerationRepository
 {

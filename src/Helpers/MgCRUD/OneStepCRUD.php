@@ -1,4 +1,4 @@
-<?php namespace Moregold\Infrastructure\Helpers\MG-CRUD;
+<?php namespace Moregold\Infrastructure\Helpers\MgCRUD;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
