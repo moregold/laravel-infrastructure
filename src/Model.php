@@ -84,7 +84,7 @@ abstract class Model extends Eloquent implements RulesInterface
          * for the `id` field (provided by $model->getKeyName())
          */
         static::creating(function ($model) {
-            if (!($model->incrementing || $model->disableGuid)) {
+            if (!($model->incrementing || $model->disableGuid || $model->{$model->getKeyName()})) {
                 $model->{$model->getKeyName()} = (string)$model->makeGuid();
             }
         });
