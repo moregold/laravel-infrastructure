@@ -20,11 +20,7 @@ class GenerationRepository
 
 	public function readFile()
 	{
-		if(Storage::disk('template')->exists($this->url)){
-			$this->file = Storage::disk('template')->get($this->url);
-		}else{
-			Storage::disk('template')->put($this->url, '');
-		}
+		$this->file = Storage::disk('template')->get($this->url);
 		
 	}
 
