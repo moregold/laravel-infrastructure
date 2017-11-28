@@ -16,7 +16,8 @@ trait SubAttributesTrait{
 	 */
 	public function getSubAttributeWithDefault($attribute_name = '', $default_value = '')
 	{
-		if( !$result = $this->getSubAttribute( $attribute_name ) ) {
+		$result = $this->getSubAttribute( $attribute_name );
+		if( $result === false ) {
 			$realtion_name = $this->_attribute_relation_name;
 			$this->$realtion_name()->create([
 				$this->_attribute_relation_key_name   => $attribute_name,
