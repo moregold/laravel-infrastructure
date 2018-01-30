@@ -20,8 +20,11 @@ class GenerationRepository
 
 	public function readFile()
 	{
-		$this->file = Storage::disk('template')->get($this->url);
-		
+		try {
+			$this->file = Storage::disk('template')->get($this->url);
+		} catch (\Exception $e) {
+			$this->file = '';
+		}
 	}
 
 	public function createContent()
