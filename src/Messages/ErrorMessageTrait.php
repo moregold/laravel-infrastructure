@@ -20,7 +20,7 @@ trait ErrorMessageTrait
      */
     protected function initErrorMessageAble()
     {
-        if (get_class($this->errors) != 'Illuminate\Support\MessageBag')  {
+        if (@get_class($this->errors) != 'Illuminate\Support\MessageBag')  {
             $this->errors = new MessageBag();
         }
     }

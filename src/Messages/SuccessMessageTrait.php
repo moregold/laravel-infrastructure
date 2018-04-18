@@ -18,7 +18,7 @@ trait SuccessMessageTrait
      */
     protected function initSuccessMessageAble()
     {
-        if (get_class($this->successes) != 'Illuminate\Support\MessageBag')  {
+        if (@get_class($this->successes) != 'Illuminate\Support\MessageBag')  {
             $this->successes = new MessageBag();
         }
     }
