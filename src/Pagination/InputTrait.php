@@ -12,7 +12,8 @@ trait InputTrait
             'last_received',
             'order_by',
             'skip',
-            'take'
+            'take',
+            'keyword'
         );
     }
 
