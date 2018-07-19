@@ -75,10 +75,12 @@ trait FiltersTrait
 
         // check if the relation exists, and if so, include it
         if (strlen($include)) {
-            if (method_exists($model, $include)) {
-                $query = $query->with($include);
+            if( preg_match('/^(.+?)Count$/iu', $include, $m) ) {
+                if (method_exists($model, $m[1])) {
+                    $query = $query->withCount($m[1]);
+                }
             } else {
-                Log::error('Cannot find include "'.$include.'" on '.get_class($model));
+                $query = $query->with($include);    
             }
         }
 
