@@ -74,7 +74,7 @@ trait FiltersTrait
         }
 
         // check if the relation exists, and if so, include it
-        if (strlen($include)) {
+        if (strlen($include) && !preg_match('/get/', $include)) {
             if( preg_match('/^(.+?)Count$/iu', $include, $m) ) {
                 if (method_exists($model, $m[1])) {
                     $query = $query->withCount($m[1]);
